@@ -1,0 +1,10 @@
+language: clojure
+
+before_install:
+  - npm install -g serverless
+
+script:
+  - lein doo node test once
+
+after_success:
+  - test $TRAVIS_BRANCH = "master" && serverless deploy --conceal
